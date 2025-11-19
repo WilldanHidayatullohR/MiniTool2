@@ -47,7 +47,7 @@ if uploaded_file is None:
 # Baca data
 df = pd.read_csv(uploaded_file)
 
-st.subheader("📄 Preview Data")
+st.subheader("Preview Data")
 st.dataframe(df.head())
 
 st.write(f"Jumlah baris: **{df.shape[0]}**, jumlah kolom: **{df.shape[1]}**")
@@ -55,7 +55,7 @@ st.write(f"Jumlah baris: **{df.shape[0]}**, jumlah kolom: **{df.shape[1]}**")
 # =========================
 # 2. PILIH KOLOM TARGET
 # =========================
-st.subheader("🎯 Pengaturan Target Kepuasan")
+st.subheader("Pengaturan Target Kepuasan")
 
 kolom_kandidat_target = df.columns.tolist()
 target_col = st.selectbox(
@@ -110,12 +110,12 @@ st.json(class_mapping)
 # =========================
 # 4. RINGKASAN DATA & VISUALISASI DASAR
 # =========================
-st.subheader("📊 Ringkasan Data dan Distribusi")
+st.subheader("Ringkasan Data dan Distribusi")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("**Distribusi Kelas Target**")
+    st.markdown("Distribusi Kelas Target")
     target_counts = pd.Series(y_raw).value_counts()
     fig, ax = plt.subplots(figsize=(4, 3))
     sns.barplot(
@@ -130,7 +130,7 @@ with col1:
     st.pyplot(fig)
 
 with col2:
-    st.markdown("**Rata-rata Skor Fitur**")
+    st.markdown("Rata-rata Skor Fitur")
     mean_scores = X_numeric.mean().sort_values(ascending=False)
     fig2, ax2 = plt.subplots(figsize=(4, 3))
     mean_scores.plot(kind="bar", ax=ax2)
@@ -167,7 +167,7 @@ st.write(
 # =========================
 # 6. TRAINING MODEL RANDOM FOREST
 # =========================
-st.subheader("🤖 Pemodelan Klasifikasi: Random Forest")
+st.subheader("Pemodelan Klasifikasi: Random Forest")
 
 n_estimators = st.slider(
     "Jumlah Trees (n_estimators)",
@@ -226,7 +226,7 @@ st.markdown("---")
 # =========================
 # 7. FEATURE IMPORTANCE
 # =========================
-st.subheader("🌟 Pentingnya Fitur (Feature Importance) - Random Forest")
+st.subheader("Pentingnya Fitur (Feature Importance) - Random Forest")
 
 importances = model.feature_importances_
 feat_imp = pd.Series(importances, index=X_numeric.columns)
@@ -262,7 +262,7 @@ st.markdown("---")
 # =========================
 # 8. EXPLAINABLE AI (SHAP)
 # =========================
-st.subheader("🧠 Explainable AI (SHAP)")
+st.subheader("Explainable AI (SHAP)")
 
 with st.expander("Tampilkan Analisis SHAP (mungkin sedikit lebih lambat)"):
     # Untuk RandomForestClassifier, TreeExplainer akan otomatis dipakai
